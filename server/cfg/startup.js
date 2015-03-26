@@ -18,4 +18,15 @@ Meteor.startup(function() {
         Roles.addUsersToRoles(id, Role.SUPER_ADMIN);
         console.log('Default super-admin created');
     }
+
+    // API
+    Restivus.configure({
+        useAuth: true
+    });
+
+    Restivus.addCollection(Events, {
+        routeOptions: {
+            authRequired: true
+        }
+    });
 });
