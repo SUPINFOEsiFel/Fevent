@@ -3,5 +3,6 @@
     padding-bottom: 70px;
     color: #ffffff;
     background: #555555 url("img/jumbotron.svg");
-    background-position: bottom left;
+    background-position: bottom;
+    background-size: cover;
 }
