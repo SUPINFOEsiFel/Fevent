@@ -1,0 +1,17 @@
+<template name="jumbotron">
+    <div class="jumbotron">
+        <div class="container-fluid  text-center">
+            <div class="col-xs-12">
+                <h1>
+                    {{#if ico }}
+                        <i class="fa fa-fw fa-{{ico}}"></i>
+                    {{/if}}
+                    {{title}}
+                    {{#if subtitle }}
+                        <small>{{subtitle}}</small>
+                    {{/if}}
+                </h1>
+            </div>
+        </div>
+    </div>
+</template>
