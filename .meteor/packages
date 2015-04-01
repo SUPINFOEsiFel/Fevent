@@ -6,13 +6,19 @@
 
 meteor-platform
 iron:router
-sacha:spin
 accounts-password
 alanning:roles
-natestrauser:animate-css
-fortawesome:fontawesome
-ian:accounts-ui-bootstrap-3
-nemo64:bootstrap
-less
 nimble:restivus
+mquandalle:bower
+less
+nemo64:bootstrap
+ian:accounts-ui-bootstrap-3
 pahans:reactive-modal
+kevohagan:sweetalert
+fortawesome:fontawesome
+sacha:spin
+natestrauser:animate-css
+tsega:bootstrap3-datetimepicker
+rzymek:moment-locale-fr
+tomi:upload-server
+tomi:upload-jquery
