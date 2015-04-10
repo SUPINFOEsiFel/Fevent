@@ -2,7 +2,7 @@
     <div id="event-{{_id}}" class="event animated fadeIn">
         <div class="row">
             <div class="col-md-12">
-                <img class="event-preview img-responsive img-rounded" src="/uploads/{{_id}}">
+                <img class="event-preview img-responsive img-rounded" src="/upload/{{_id}}">
                 <header class="event-header">
                     <h3>
                 <span class="event-price">
@@ -47,13 +47,13 @@
 
                     <div class="event-external">
                         <p class="event-external-links">
-                            <a class="btn btn-default event-more" href="{{pathFor route='eventShow' _id=_id}}">
-                                <i class="fa fa-rocket"></i>
-                                En savoir plus
-                            </a>
                             <a href="{{link}}" class="btn btn-info btn-xs">
                                 <i class="fa fa-external-link"></i>
                                 {{link}}
+                            </a>
+                            <a class="btn btn-default event-more" href="{{pathFor route='eventShow' _id=_id}}">
+                                <i class="fa fa-rocket"></i>
+                                En savoir plus
                             </a>
                         </p>
                     </div>

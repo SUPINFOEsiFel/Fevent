@@ -17,6 +17,11 @@
     max-width: 40%;
 }
 
+form .event-form-preview {
+    margin-top: 10px;
+    max-height: 140px;
+}
+
 .event-price {
     font-weight: bold;
 }
