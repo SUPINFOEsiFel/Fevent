@@ -87,8 +87,12 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="picture" class="control-label">Prévisualisation</label>
-                        {{> upload_bootstrap fileTypes='.jpg, .jpeg, .png, .gif' multiple=false formData=specificFormData callbacks=finish }}
-                        <input type="hidden" id="picture"/>
+                        {{> upload_bootstrap fileTypes='.jpg, .jpeg, .png, .gif' multiple=false callbacks=callbacks }}
+                        <input type="hidden" id="picture" value="{{pictureName}}">
+                        <br>
+                        {{#if edit}}
+                            <img src="/upload/{{_id}}" alt="Image de l'évènement" class="img-responsive">
+                        {{/if}}
                     </div>
                 </div>
             </div>

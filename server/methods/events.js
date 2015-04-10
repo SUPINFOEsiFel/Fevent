@@ -1,6 +1,5 @@
 var fs = Npm.require('fs');
-var dir = process.env.PWD + '/.uploads/img/';
-var dirPublic = process.env.PWD + '/public/uploads/';
+var DIR = process.env.PWD + UPLOAD_DIR + '/';
 
 Meteor.methods({
     addEvent: function(values) {
@@ -20,10 +19,15 @@ Meteor.methods({
             comment: values.comment
         });
 
-        fs.rename(dir + values.picture, dirPublic + id, function (err) {
-            if (err) throw err;
+        fs.exists(DIR + values.picture, function (exists) {
+            if (exists) {
+                fs.rename(DIR + values.picture, DIR + id, function (err) {
+                    if (err) {
+                        throw err;
+                    }
+                });
+            }
         });
-
     },
     editEvent: function(values) {
         //checkAdmin();
@@ -32,25 +36,36 @@ Meteor.methods({
 
         Events.update(event._id, {
             $set: {
-                name: values.name,
-                begin: values.begin,
-                end: values.end,
-                price: values.price,
-                address: values.address,
-                zipCode: values['zip-code'],
-                city: values.city,
-                country: values.country,
-                link: values.link,
-                picture: values.picture,
-                comment: values.comment
+                name:       values.name,
+                begin:      values.begin,
+                end:        values.end,
+                price:      values.price,
+                address:    values.address,
+                zipCode:    values['zip-code'],
+                city:       values.city,
+                country:    values.country,
+                link:       values.link,
+                picture:    values.picture,
+                comment:    values.comment
             }
         });
 
-        fs.unlink(dirPublic + event._id, function (err) {
-            if (err) throw err;
+        fs.exists(DIR + event._id, function (exists) {
+            if (exists) {
+                fs.unlink(DIR + event._id, function (err) {
+                    if (err) throw err;
+                });
+            }
         });
-        fs.rename(dir + values.picture, dirPublic + event._id, function (err) {
-            if (err) throw err;
+
+        fs.exists(DIR + values.picture, function (exists) {
+            if (exists) {
+                fs.rename(DIR + values.picture, DIR + event._id, function (err) {
+                    if (err) {
+                        throw err;
+                    }
+                });
+            }
         });
     },
     removeEvent: function(id) {
@@ -58,9 +73,18 @@ Meteor.methods({
 
         var event = Events.findOne(id);
 
+        if (!event) {
+            throw new Error('Not found', 404);
+        }
+
         Events.remove(id);
-        fs.unlink(dirPublic + event._id, function (err) {
-            if (err) throw err;
+
+        fs.exists(DIR + event._id, function (exists) {
+            if (exists) {
+                fs.unlink(dirPublic + event._id, function (err) {
+                    if (err) throw err;
+                });
+            }
         });
     }
 });

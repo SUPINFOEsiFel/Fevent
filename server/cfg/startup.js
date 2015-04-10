@@ -32,14 +32,15 @@ Meteor.startup(function() {
 
     // Uploads
     UploadServer.init({
-        tmpDir: process.env.PWD + '/.uploads/tmp',
-        uploadDir: process.env.PWD + '/.uploads/img',
-        acceptFileTypes: /\.(gif|jpe?g|png)$/i, // only images will be accept for now
+        tmpDir: process.env.PWD + UPLOAD_DIR + '/tmp',
+        uploadDir: process.env.PWD + UPLOAD_DIR,
+        acceptFileTypes: /\.(gif|jpe?g|png)$/i,
         checkCreateDirectories: true,
-        cacheTime: 100,
         mimeTypes: {
-            "xml": "application/xml",
-            "vcf": "text/x-vcard"
+            "jpeg": "image/jpeg",
+            "jpg": "image/jpeg",
+            "png": "image/png",
+            "gif": "image/gif"
         }
     });
 });
