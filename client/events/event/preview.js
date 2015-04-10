@@ -8,11 +8,14 @@ Template.eventPreview.events({
             buttons: {
                 cancel: {
                     class: 'btn-default',
-                    label: 'Close'
+                    label: 'Fermer'
                 }
             }
         });
 
         modal.show();
+        $('.event-more').on('click', function(){
+            modal.hide();
+        });
     }
 });

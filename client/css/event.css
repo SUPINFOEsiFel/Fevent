@@ -1,0 +1,22 @@
+#event-list .event {
+    margin: 50px 0 80px 0;
+    text-align: center;
+}
+
+#event-list .event-preview, #event-show .event-preview {
+    max-width: 60%;
+}
+
+#event-list .event-preview {
+    margin: auto;
+    border: 1px solid #cccccc;
+    padding: 4px;
+}
+
+.event-price {
+    font-weight: bold;
+}
+
+.event-panel .btn-group {
+    padding-right: 0;
+}

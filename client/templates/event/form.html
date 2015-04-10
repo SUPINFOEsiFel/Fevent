@@ -87,7 +87,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="picture" class="control-label">Prévisualisation</label>
-                        {{> upload_bootstrap fileTypes='.jpg, .jpeg, .png, .gif' multiple=false formData=specificFormData }}
+                        {{> upload_bootstrap fileTypes='.jpg, .jpeg, .png, .gif' multiple=false formData=specificFormData callbacks=finish }}
+                        <input type="hidden" id="picture"/>
                     </div>
                 </div>
             </div>

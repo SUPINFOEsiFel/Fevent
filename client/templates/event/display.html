@@ -1,9 +1,14 @@
 <template name="eventDisplay">
-    <div id="event-{{id}}" class="event">
+    <div id="event-{{_id}}" class="event animated fadeIn">
         <header class="event-header">
-            <img class="event-preview" src="#">
-            <h3 class="event-name">
-                {{name}}
+            <img class="event-preview img-responsive img-rounded" src="/uploads/{{_id}}">
+            <h3>
+                <span class="event-price">
+                    {{price}} €
+                </span>
+                <span class="event-name">
+                    {{name}}
+                </span>
             </h3>
             <p class="event-info">
                 Du
@@ -14,9 +19,6 @@
                 <time class="event-end">
                     {{end}}
                 </time>
-                <span class="event-price pull-right">
-                    {{price}} €
-                </span>
             </p>
         </header>
 
@@ -47,9 +49,13 @@
 
         <div class="event-external">
             <p class="event-external-links">
-                <a class="btn btn-default" href="{{link}}">
-                    <i class="fa fa-external-link"></i>
+                <a class="btn btn-default event-more" href="{{pathFor route='eventShow' _id=_id}}">
+                    <i class="fa fa-rocket"></i>
                     En savoir plus
+                </a>
+                <a href="{{link}}" class="btn btn-info btn-xs">
+                    <i class="fa fa-external-link"></i>
+                    {{link}}
                 </a>
             </p>
         </div>
