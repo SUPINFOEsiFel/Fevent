@@ -7,6 +7,7 @@ Meteor.methods({
         //checkAdmin();
 
         var id = Events.insert({
+            date: new Date(),
             name: values.name,
             begin: values.begin,
             end: values.end,

@@ -6,6 +6,10 @@ Template.eventPanel.helpers({
         return Events.find().count();
     },
     events: function() {
-        return Events.find();
+        return Events.find({}, {
+            sort: {
+                date: -1
+            }
+        });
     }
 });
