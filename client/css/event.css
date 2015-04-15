@@ -22,7 +22,7 @@ form .event-form-preview {
     max-height: 140px;
 }
 
-.event-price {
+.event-price, .event-info {
     font-weight: bold;
 }
 

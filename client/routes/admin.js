@@ -3,7 +3,9 @@ Router.route('/admin', {
     template: 'admin',
     waitOn: function() {
         return [
-            Meteor.subscribe('events')
+            Meteor.subscribe('events'),
+            Meteor.subscribe('users'),
+            Meteor.subscribe('groups')
         ];
     }
 });

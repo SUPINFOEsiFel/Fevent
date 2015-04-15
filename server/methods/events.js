@@ -3,7 +3,7 @@ var DIR = process.env.PWD + UPLOAD_DIR + '/';
 
 Meteor.methods({
     addEvent: function(values) {
-        //checkAdmin();
+        checkAdmin();
 
         var id = Events.insert({
             date: new Date(),
@@ -30,7 +30,7 @@ Meteor.methods({
         });
     },
     editEvent: function(values) {
-        //checkAdmin();
+        checkAdmin();
 
         var event = Events.findOne(values.id);
 
@@ -76,7 +76,7 @@ Meteor.methods({
         }
     },
     removeEvent: function(id) {
-        //checkAdmin();
+        checkAdmin();
 
         var event = Events.findOne(id);
 

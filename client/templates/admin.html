@@ -13,5 +13,16 @@
 
     <div class="container">
         {{> eventPanel}}
+
+        {{#if superAdmin }}
+            <div class="row">
+                <div id="users-panel" class="col-xs-12 col-sm-6">
+                    {{> userPanel}}
+                </div>
+                <div id="groups-panel" class="col-xs-12 col-sm-6">
+                    {{> groupPanel}}
+                </div>
+            </div>
+        {{/if}}
     </div>
 </template>

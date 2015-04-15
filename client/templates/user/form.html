@@ -1,0 +1,24 @@
+<template name="userForm">
+    <form>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="username" class="control-label">Nom d'utlisateur</label>
+                    <input type="text" class="form-control" id="username" placeholder="darthVader" name="username" value="{{username}}">
+                </div>
+                {{#if add}}
+                    <div class="form-group">
+                        <label for="password" class="control-label">Mot de passe</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                {{/if}}
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="email" class="control-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="anakin@skywalker.com" name="email" value="{{email}}">
+                </div>
+            </div>
+        </div>
+    </form>
+</template>
