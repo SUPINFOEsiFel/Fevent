@@ -12,7 +12,7 @@ Template.eventPanel.events({
     'click .event-edit': function() {
         openPersistModal({
             mode: MODE_EDIT,
-            title: 'Éditer l\'évnènement',
+            title: 'Éditer l\'évènement',
             template: Template.eventForm,
             method: 'editEvent',
             error: 'Impossible d\'éditer l\'évènement',

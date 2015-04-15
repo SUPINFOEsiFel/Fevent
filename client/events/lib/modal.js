@@ -10,12 +10,12 @@ openPersistModal = function(parameters) {
         buttons: {
             cancel: {
                 class: 'btn-danger',
-                label: 'Cancel'
+                label: 'Annuler'
             },
             save: {
                 closeModalOnClick: false,
                 class: 'btn-success',
-                label: 'Save'
+                label: 'Enregistrer'
             }
         },
         doc: values

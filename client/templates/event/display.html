@@ -1,57 +1,64 @@
 <template name="eventDisplay">
-    <div id="event-{{id}}" class="event">
-        <header class="event-header">
-            <img class="event-preview" src="#">
-            <h3 class="event-name">
-                {{name}}
-            </h3>
-            <p class="event-info">
-                Du
-                <time class="event-begin">
-                    {{begin}}
-                </time>
-                au
-                <time class="event-end">
-                    {{end}}
-                </time>
-                <span class="event-price pull-right">
+    <div id="event-{{_id}}" class="event animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <img class="event-preview img-responsive img-rounded" src="/upload/{{_id}}">
+                <header class="event-header">
+                    <h3>
+                <span class="event-price">
                     {{price}} €
                 </span>
-            </p>
-        </header>
+                <span class="event-name">
+                    {{name}}
+                </span>
+                    </h3>
+                    <p class="event-info">
+                        Du
+                        <time class="event-begin">
+                            {{begin}}
+                        </time>
+                        au
+                        <time class="event-end">
+                            {{end}}
+                        </time>
+                    </p>
+                </header>
 
-        <p class="event-comment">
-            {{comment}}
-        </p>
+                <p class="event-comment">
+                    {{comment}}
+                </p>
 
-        <div class="event-map">
-            <div class="event-google-map">
+                <div class="text-right">
+                    <p class="event-location">
+                        <span class="event-address">
+                            {{address}}
+                        </span>
+                            <br>
+                        <span class="event-zip-code">
+                            {{zipCode}}
+                        </span>
+                        <span class="event-city">
+                            {{city}}
+                        </span>
+                        <span class="event-country">
+                            {{country}}
+                        </span>
+                    </p>
 
+                    <div class="event-external">
+                        <p class="event-external-links">
+                            <a href="{{link}}" class="btn btn-info btn-xs">
+                                <i class="fa fa-external-link"></i>
+                                {{link}}
+                            </a>
+                            <a class="btn btn-default event-more" href="{{pathFor route='eventShow' _id=_id}}">
+                                <i class="fa fa-rocket"></i>
+                                En savoir plus
+                            </a>
+                        </p>
+                    </div>
+                </div>
             </div>
-            <p class="event-location">
-                <span class="event-address">
-                    {{address}}
-                </span>
-                <br>
-                <span class="event-zip-code">
-                    {{zipCode}}
-                </span>
-                <span class="event-city">
-                    {{city}}
-                </span>
-                <span class="event-country">
-                    {{country}}
-                </span>
-            </p>
-        </div>
-
-        <div class="event-external">
-            <p class="event-external-links">
-                <a class="btn btn-default" href="{{link}}">
-                    <i class="fa fa-external-link"></i>
-                    En savoir plus
-                </a>
-            </p>
         </div>
     </div>
 </template>

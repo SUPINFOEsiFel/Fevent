@@ -20,35 +20,19 @@ Meteor.startup(function() {
     }
 
     // API
-    Restivus.configure({
-        useAuth: true
-    });
-
-    Restivus.addCollection(Events, {
-        routeOptions: {
-            authRequired: true
-        }
-    });
+    restivusInit();
 
     // Uploads
     UploadServer.init({
-        tmpDir: process.env.PWD + '/.uploads/tmp',
-        uploadDir: process.env.PWD + '/.uploads/',
-        acceptFileTypes: '/.(gif|jpe?g|png)$/i', // only images will be accept for now
-        imageVersions: {
-            thumbnailLarge: {width: 1200, height: 900},
-            thumbnailMedium: {width: 400, height: 300},
-            thumbnailSmall: {width: 200, height: 100}
-        },
+        tmpDir: process.env.PWD + UPLOAD_DIR + '/tmp',
+        uploadDir: process.env.PWD + UPLOAD_DIR,
+        acceptFileTypes: /\.(gif|jpe?g|png)$/i,
         checkCreateDirectories: true,
-        getDirectory: function(fileInfo, formData) {
-            // create a sub-directory in the uploadDir based on the content type (e.g. 'images')
-            return formData.contentType;
-        },
-        cacheTime: 100,
         mimeTypes: {
-            "xml": "application/xml",
-            "vcf": "text/x-vcard"
+            "jpeg": "image/jpeg",
+            "jpg": "image/jpeg",
+            "png": "image/png",
+            "gif": "image/gif"
         }
     });
 });

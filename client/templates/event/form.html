@@ -16,7 +16,18 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="comment" class="control-label">Commentaire</label>
+                        <textarea class="form-control" rows="6" id="comment" placeholder="Aucune invitation vendue sur place.">{{comment}}</textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="row">
+            <div class="col-md-6">
+                <section id="event-form-dates">
                     <div class="form-group">
                         <label for="begin" class="control-label">Début</label>
                         <div class="input-group datetimepicker">
@@ -24,8 +35,6 @@
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
                     <div class="form-group">
                         <label for="end" class="control-label">Fin</label>
                         <div class="input-group datetimepicker">
@@ -33,64 +42,54 @@
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         </div>
                     </div>
-                </div>
+                </section>
+                <section id="event-form-address">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="address" class="control-label">Adresse</label>
+                                <input type="text" class="form-control" id="address" placeholder="3 Boulevard de Stalingrad" value="{{address}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="zip-code" class="control-label">Code postal</label>
+                                <input type="text" class="form-control" id="zip-code" placeholder="69100" value="{{zipCode}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="city" class="control-label">Ville</label>
+                                <input type="text" class="form-control" id="city" placeholder="Villeurbanne" value="{{city}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="country" class="control-label">Pays</label>
+                                <input type="text" class="form-control" id="country" placeholder="France" value="{{country}}">
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="comment" class="control-label">Commentaire</label>
-                        <textarea class="form-control" rows="6" id="comment" placeholder="Aucune invitation vendue sur place."></textarea>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="event-form-address">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="address" class="control-label">Adresse</label>
-                        <input type="text" class="form-control" id="address" placeholder="3 Boulevard de Stalingrad" value="{{address}}">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="zip-code" class="control-label">Code postal</label>
-                        <input type="text" class="form-control" id="zip-code" placeholder="69100" value="{{zipCode}}">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="city" class="control-label">Ville</label>
-                        <input type="text" class="form-control" id="city" placeholder="Villeurbanne" value="{{city}}">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="country" class="control-label">Pays</label>
-                        <input type="text" class="form-control" id="country" placeholder="France" value="{{country}}">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="event-form-external">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="col-md-6">
+                <section id="event-form-external">
                     <div class="form-group">
                         <label for="link" class="control-label">Lien externe</label>
                         <input type="url" class="form-control" id="link" placeholder="http://event.fel/bal-medecine-lyon-sud" value="{{link}}">
                     </div>
-                </div>
-                <div class="col-md-6">
                     <div class="form-group">
                         <label for="picture" class="control-label">Prévisualisation</label>
-                        {{> upload_bootstrap fileTypes='.jpg, .jpeg, .png, .gif' multiple=false formData=specificFormData }}
+                        {{> upload_bootstrap fileTypes='.jpg, .jpeg, .png, .gif' multiple=false callbacks=callbacks }}
+                        <input type="hidden" id="picture" value="{{pictureName}}">
+                        {{#if edit}}
+                            <img src="/upload/{{_id}}" alt="Image de l'évènement" class="img-responsive img-rounded event-form-preview">
+                        {{/if}}
                     </div>
-                </div>
+                </section>
             </div>
-        </section>
+        </div>
     </form>
 </template>

@@ -1,0 +1,25 @@
+<template name="groupPanel">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="badge">{{ length }}</span>
+            <span class="panel-title">Groupes</span>
+            <span class="pull-right">
+                <button type="button" id="group-add" class="btn btn-success btn-xs">
+                    <i class="fa fa-fw fa-plus"></i>
+                    Ajouter
+                </button>
+            </span>
+        </div>
+        {{#if empty}}
+            <div class="panel-body">
+                Il n'y a aucun groupe pour l'instant.
+            </div>
+        {{else}}
+            <ul class="list-group">
+                {{#each groups}}
+                    {{> groupPreview}}
+                {{/each}}
+            </ul>
+        {{/if}}
+    </div>
+</template>

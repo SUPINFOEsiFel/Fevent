@@ -2,7 +2,7 @@
     padding-top: 100px;
     padding-bottom: 70px;
     color: #ffffff;
-    background: #555555 url("img/jumbotron.svg");
-    background-position: bottom;
+    background: #555555 url("img/jumbotron.png");
+    background-position: center;
     background-size: cover;
 }
