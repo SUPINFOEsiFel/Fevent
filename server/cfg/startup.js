@@ -20,15 +20,7 @@ Meteor.startup(function() {
     }
 
     // API
-    Restivus.configure({
-        useAuth: true
-    });
-
-    Restivus.addCollection(Events, {
-        routeOptions: {
-            authRequired: true
-        }
-    });
+    restivusInit();
 
     // Uploads
     UploadServer.init({
