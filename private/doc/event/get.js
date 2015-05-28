@@ -5,7 +5,7 @@
  * @apiGroup Event
  *
  * @apiExample {curl} Example usage:
- *     curl -X GET fevent.meteor.com/api/events/XbGwBxK9hc2NGeoi2 \
+ *     curl -X GET fevent.meteor.com/api/event/XbGwBxK9hc2NGeoi2 \
  *     -H "X-Auth-Token: kpViNy6GFySoZymr00iVxxLHfyj10w6x9Mfee_WEvTy" \
  *     -H "X-User-Id: hCGMbYWxqWHKoEuth"
  *
@@ -24,11 +24,13 @@
  *         "data": {
  *             "_id": "XbGwBxK9hc2NGeoi2",
  *             "title": "Event title",
- *             "description": "Event description"
+ *             "description": "Event description",
+ *             // ...
+ *             "imageExtension": ".jpg"
  *         }
  *     }
  *
- * @apiError EventNotFound The id of the event was not found.
+ * @apiError EventNotFound The ID of the event was not found.
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 404 Not Found

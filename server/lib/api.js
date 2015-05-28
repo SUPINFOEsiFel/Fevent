@@ -1,3 +1,5 @@
+var base64Img = Meteor.npmRequire('base64-img');
+
 restivusInit = function() {
     Restivus.configure({
         useAuth: true
@@ -55,7 +57,7 @@ restivusInit = function() {
         }
     });
 
-    var requiredFields = ['name', 'begin', 'end', 'price', 'address', 'zipCode', 'city', 'country', 'link', 'comment'];
+    var requiredFields = ['name', 'begin', 'end', 'price', 'address', 'zipCode', 'city', 'country', 'link', 'comment', 'image'];
 
     Restivus.addRoute('event', {
         post: {
@@ -86,7 +88,16 @@ restivusInit = function() {
                 }
 
                 this.bodyParams.groupId = this.user.groupId;
+                var image = this.bodyParams.image;
+                delete this.bodyParams.image;
                 var id = Events.insert(this.bodyParams);
+
+                // Create image
+                base64Img.imgSync(image, UPLOAD_FULL_PATH, id, function(err) {
+                    if (err) {
+                        throw err;
+                    }
+                });
 
                 if (id) {
                     return {

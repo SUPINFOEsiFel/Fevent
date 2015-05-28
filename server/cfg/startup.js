@@ -24,7 +24,7 @@ Meteor.startup(function() {
 
     // Uploads
     UploadServer.init({
-        tmpDir: process.env.PWD + UPLOAD_DIR + '/tmp',
+        tmpDir: UPLOAD_FULL_PATH + 'tmp',
         uploadDir: process.env.PWD + UPLOAD_DIR,
         acceptFileTypes: /\.(gif|jpe?g|png)$/i,
         checkCreateDirectories: true,

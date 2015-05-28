@@ -23,12 +23,14 @@
  *             {
  *                 "_id": "XbGwBxK9hc2NGeoi2",
  *                 "title": "Event 1",
- *                 "description": "Event description"
+ *                 "description": "Event description",
+ *                 // ...
  *             },
  *             {
  *                 "_id": "PgmZGfCo9afaanobf",
  *                 "title": "Event 2",
- *                 "description": "Event description"
+ *                 "description": "Event description",
+ *                 // ...
  *             }
  *         ]
  *     }

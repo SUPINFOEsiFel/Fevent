@@ -85,7 +85,7 @@
                         {{> upload_bootstrap fileTypes='.jpg, .jpeg, .png, .gif' multiple=false callbacks=callbacks }}
                         <input type="hidden" id="picture" value="{{pictureName}}">
                         {{#if edit}}
-                            <img src="/upload/{{_id}}" alt="Image de l'évènement" class="img-responsive img-rounded event-form-preview">
+                            <img src="/upload/{{_id}}{{imageExtension}}" alt="Image de l'évènement" class="img-responsive img-rounded event-form-preview">
                         {{/if}}
                     </div>
                 </section>

@@ -1,9 +1,13 @@
 var fs = Npm.require('fs');
-var DIR = process.env.PWD + UPLOAD_DIR + '/';
+var path = Npm.require('path');
 
 Meteor.methods({
     addEvent: function(values) {
         checkAdmin();
+
+        values.imageExtension = values.picture
+            ? path.extname(UPLOAD_FULL_PATH + values.picture)
+            : null;
 
         var id = Events.insert({
             date: new Date(),
@@ -16,12 +20,13 @@ Meteor.methods({
             city: values.city,
             country: values.country,
             link: values.link,
-            comment: values.comment
+            comment: values.comment,
+            imageExtension: values.imageExtension
         });
 
-        fs.exists(DIR + values.picture, function (exists) {
+        fs.exists(UPLOAD_FULL_PATH + values.picture, function (exists) {
             if (exists) {
-                fs.rename(DIR + values.picture, DIR + id, function (err) {
+                fs.rename(UPLOAD_FULL_PATH + values.picture, UPLOAD_FULL_PATH + id + values.imageExtension, function (err) {
                     if (err) {
                         throw err;
                     }
@@ -34,7 +39,7 @@ Meteor.methods({
 
         var event = Events.findOne(values.id);
 
-        var set = {
+        var data = {
             name:       values.name,
             begin:      values.begin,
             end:        values.end,
@@ -48,25 +53,27 @@ Meteor.methods({
         };
 
         if (values.picture) {
-           set.picture =  values.picture;
+            data.imageExtension = path.extname(UPLOAD_FULL_PATH + values.picture);
         }
 
         Events.update(event._id, {
-            $set: set
+            $set: data
         });
 
         if (values.picture) {
-            fs.exists(DIR + event._id, function (exists) {
+            fs.exists(UPLOAD_FULL_PATH + event._id + event.imageExtension, function (exists) {
                 if (exists) {
-                    fs.unlink(DIR + event._id, function (err) {
-                        if (err) throw err;
+                    fs.unlink(UPLOAD_FULL_PATH + event._id + event.imageExtension, function (err) {
+                        if (err) {
+                            throw err;
+                        }
                     });
                 }
             });
 
-            fs.exists(DIR + values.picture, function (exists) {
+            fs.exists(UPLOAD_FULL_PATH + values.picture, function (exists) {
                 if (exists) {
-                    fs.rename(DIR + values.picture, DIR + event._id, function (err) {
+                    fs.rename(UPLOAD_FULL_PATH + values.picture, UPLOAD_FULL_PATH + event._id + data.imageExtension, function (err) {
                         if (err) {
                             throw err;
                         }
@@ -86,10 +93,12 @@ Meteor.methods({
 
         Events.remove(id);
 
-        fs.exists(DIR + event._id, function (exists) {
+        fs.exists(UPLOAD_FULL_PATH + event._id + event.imageExtension, function (exists) {
             if (exists) {
-                fs.unlink(DIR + event._id, function (err) {
-                    if (err) throw err;
+                fs.unlink(UPLOAD_FULL_PATH + event._id + event.imageExtension, function (err) {
+                    if (err) {
+                        throw err;
+                    }
                 });
             }
         });
