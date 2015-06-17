@@ -12,7 +12,7 @@ Template.groupPanel.events({
     'click .group-edit': function() {
         openPersistModal({
             mode: MODE_EDIT,
-            title: 'Éditer le group',
+            title: 'Éditer le groupe',
             template: Template.groupForm,
             method: 'editGroup',
             error: 'Impossible d\'éditer le groupe',

@@ -1,0 +1,25 @@
+<template name="housePanel">
+    <div class="panel panel-default house-panel">
+        <div class="panel-heading">
+            <span class="badge">{{length}}</span>
+            <span class="panel-title">Logements</span>
+            <span class="pull-right">
+                <button type="button" id="house-add" class="btn btn-success btn-xs">
+                    <i class="fa fa-fw fa-plus"></i>
+                    Ajouter
+                </button>
+            </span>
+        </div>
+        {{#if empty}}
+            <div class="panel-body">
+                Il n'y a aucun logement pour l'instant.
+            </div>
+        {{else}}
+            <ul class="list-group">
+                {{#each houses}}
+                    {{> housePreview}}
+                {{/each}}
+            </ul>
+        {{/if}}
+    </div>
+</template>

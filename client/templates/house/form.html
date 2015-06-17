@@ -1,0 +1,59 @@
+<template name="houseForm">
+    <form id="house-form">
+        <section id="house-form-global">
+            <div class="form-group">
+                <label for="name" class="control-label">Nom du logement</label>
+                <input type="text" class="form-control" id="name" placeholder="Résidence Albert Camus" value="{{name}}">
+            </div>
+            <div class="form-group">
+                <label for="comment" class="control-label">Commentaire</label>
+                <textarea class="form-control" rows="6" id="comment" placeholder="Studio 18,5m2 loyer 380€ charges comprises">{{comment}}</textarea>
+            </div>
+        </section>
+
+        <div class="row">
+            <div class="col-md-6">
+                <section id="house-form-address">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="address" class="control-label">Adresse</label>
+                                <input type="text" class="form-control" id="address" placeholder="23 rue Victor de Laprade" value="{{address}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="zip-code" class="control-label">Code postal</label>
+                                <input type="text" class="form-control" id="zip-code" placeholder="69008" value="{{zipCode}}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="city" class="control-label">Ville</label>
+                                <input type="text" class="form-control" id="city" placeholder="Lyon" value="{{city}}">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-6">
+                <section id="house-form-external">
+                    <div class="form-group">
+                        <label for="link" class="control-label">Lien externe</label>
+                        <input type="url" class="form-control" id="link" placeholder="http://www.hse-rhone.fr/residence/lyon-8/albert-camus/" value="{{link}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="picture" class="control-label">Prévisualisation</label>
+                        {{> upload_bootstrap fileTypes='.jpg, .jpeg, .png, .gif' multiple=false callbacks=callbacks }}
+                        <input type="hidden" id="picture" value="{{pictureName}}">
+                        {{#if edit}}
+                            <img src="/upload/{{_id}}{{imageExtension}}" alt="Image du logement" class="img-responsive img-rounded house-form-preview">
+                        {{/if}}
+                    </div>
+                </section>
+            </div>
+        </div>
+    </form>
+</template>
