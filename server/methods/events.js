@@ -4,6 +4,7 @@ var path = Npm.require('path');
 Meteor.methods({
     addEvent: function(values) {
         checkAdmin();
+        addEventValidation(values);
 
         values.imageExtension = values.picture
             ? path.extname(UPLOAD_FULL_PATH + values.picture)
@@ -36,6 +37,7 @@ Meteor.methods({
     },
     editEvent: function(values) {
         checkAdmin();
+        editEventValidation(values);
 
         var event = Events.findOne(values.id);
 
@@ -104,3 +106,28 @@ Meteor.methods({
         });
     }
 });
+
+function editEventValidation (values) {
+    if(!values.name)
+        throw new Meteor.Error(400, 'Ce nom est invalide');
+    if(!values.begin)
+        throw new Meteor.Error(400, 'La date de départ est invalide');
+    if(!values.end)
+        throw new Meteor.Error(400, 'La date de fin est invalide');
+    if(!values.price)
+        throw new Meteor.Error(400, 'Ce prix est invalide');
+    if(!values.address)
+        throw new Meteor.Error(400, 'Cette adresse est invalide');
+    if(!values.city)
+        throw new Meteor.Error(400, 'Cette ville est invalide');
+    if(!values['zip-code'])
+        throw new Meteor.Error(400, 'Ce code postal est invalide');
+    if(!values.comment)
+        throw new Meteor.Error(400, 'Ce commentaire est invalide');
+    if(!values.picture)
+        throw new Meteor.Error(400, 'L\'image n\'a pas été upload ou n\'est pas valide');
+}
+
+function addEventValidation (values) {
+    editEventValidation(values);
+}

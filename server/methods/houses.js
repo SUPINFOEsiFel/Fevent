@@ -4,6 +4,7 @@ var path = Npm.require('path');
 Meteor.methods({
     addHouse: function(values) {
         checkAdmin();
+        addHouseValidation(values);
 
         values.imageExtension = values.picture
             ? path.extname(UPLOAD_FULL_PATH + values.picture)
@@ -31,6 +32,7 @@ Meteor.methods({
     },
     editHouse: function(values) {
         checkAdmin();
+        editHouseValidation(values);
 
         var house = Houses.findOne(values.id);
 
@@ -95,3 +97,22 @@ Meteor.methods({
         });
     }
 });
+
+function editHouseValidation (values) {
+    if(!values.name)
+        throw new Meteor.Error(400, 'Ce nom est invalide');
+    if(!values.address)
+        throw new Meteor.Error(400, 'Cette adresse est invalide');
+    if(!values.city)
+        throw new Meteor.Error(400, 'Cette ville est invalide');
+    if(!values['zip-code'])
+        throw new Meteor.Error(400, 'Ce code postal est invalide');
+    if(!values.comment)
+        throw new Meteor.Error(400, 'Ce commentaire est invalide');
+    if(!values.picture)
+        throw new Meteor.Error(400, 'L\'image n\'a pas été upload ou n\'est pas valide');
+}
+
+function addHouseValidation (values) {
+    editHouseValidation(values);
+}

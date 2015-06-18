@@ -47,10 +47,12 @@
 
                     <div class="event-external">
                         <p class="event-external-links">
-                            <a href="{{link}}" class="btn btn-info">
-                                <i class="fa fa-external-link"></i>
-                                Lien externe
-                            </a>
+                            {{#if link}}
+                                <a href="{{link}}" class="btn btn-info">
+                                    <i class="fa fa-external-link"></i>
+                                    Lien externe
+                                </a>
+                            {{/if}}
                             <a class="btn btn-default event-more" href="{{pathFor route='eventShow' _id=_id}}">
                                 <i class="fa fa-rocket"></i>
                                 En savoir plus

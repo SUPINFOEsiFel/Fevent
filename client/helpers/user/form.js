@@ -11,10 +11,6 @@ Template.userForm.helpers({
         return this.mode === MODE_ADD;
     },
     isSelected: function(userGroupId, groupId) {
-        console.log(userGroupId, groupId);
         return userGroupId === groupId;
-    },
-    debug: function() {
-        console.log(this);
     }
 });
