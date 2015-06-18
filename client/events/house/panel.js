@@ -5,7 +5,7 @@ Template.housePanel.events({
             title: 'Ajouter un logement',
             template: Template.houseForm,
             method: 'addHouse',
-            fields: ['name', 'begin', 'end', 'price', 'address', 'zip-code', 'city', 'country', 'link', 'picture', 'comment'],
+            fields: ['name', 'address', 'zip-code', 'city', 'link', 'picture', 'comment'],
             error: 'Impossible d\'ajouter le logement'
         });
     },
@@ -16,7 +16,7 @@ Template.housePanel.events({
             template: Template.houseForm,
             method: 'editHouse',
             error: 'Impossible d\'éditer le logement',
-            fields: ['name', 'begin', 'end', 'price', 'address', 'zip-code', 'city', 'country', 'link', 'picture', 'comment'],
+            fields: ['name', 'address', 'zip-code', 'city', 'link', 'picture', 'comment'],
             values: this
         });
     },

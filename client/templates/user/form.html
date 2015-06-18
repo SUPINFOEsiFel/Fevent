@@ -1,4 +1,7 @@
 <template name="userForm">
+    <p>
+        {{debug}}
+    </p>
     <form>
         <div class="row">
             <div class="col-md-6">
@@ -17,6 +20,14 @@
                 <div class="form-group">
                     <label for="email" class="control-label">Email</label>
                     <input type="email" class="form-control" id="email" placeholder="anakin@skywalker.com" name="email" value="{{email}}">
+                </div>
+                <div class="form-group">
+                    <label for="group" class="control-label">Groupe</label>
+                    <select id="group" name="group" class="form-control">
+                        {{#each groups}}
+                            <option value="{{_id}}" selected={{isSelected ../groupId _id}}>{{name}}</option>
+                        {{/each}}
+                    </select>
                 </div>
             </div>
         </div>

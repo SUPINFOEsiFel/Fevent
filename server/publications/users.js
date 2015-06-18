@@ -4,6 +4,7 @@ Meteor.publish('users', function() {
     return Meteor.users.find({}, {
         fields: {
             username: 1,
+            groupId: 1,
             emails: 1,
             roles: 1
         }
