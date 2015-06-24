@@ -1,4 +1,6 @@
 var base64Img = Meteor.npmRequire('base64-img');
+var fs = Meteor.npmRequire('fs');
+var path = Meteor.npmRequire('path');
 
 restivusInit = function() {
     Restivus.configure({
@@ -88,18 +90,33 @@ restivusInit = function() {
                 }
 
                 this.bodyParams.groupId = this.user.groupId;
+                this.bodyParams.date = new Date();
+
                 var image = this.bodyParams.image;
                 delete this.bodyParams.image;
+
                 var id = Events.insert(this.bodyParams);
 
-                // Create image
-                base64Img.imgSync(image, UPLOAD_FULL_PATH, id, function(err) {
-                    if (err) {
-                        throw err;
-                    }
-                });
-
                 if (id) {
+                    // Create image
+                    base64Img.imgSync(image, UPLOAD_FULL_PATH, id);
+                    var files = fs.readdirSync(UPLOAD_FULL_PATH);
+                    var imageExtension = null;
+
+                    files.forEach(function (file) {
+                        if (file.lastIndexOf(id, 0) === 0) {
+                            imageExtension = path.extname(file);
+
+                            return false;
+                        }
+                    });
+
+                    Events.update(id, {
+                        $set: {
+                            imageExtension: imageExtension
+                        }
+                    });
+
                     return {
                         statusCode: 200,
                         status: 'success',

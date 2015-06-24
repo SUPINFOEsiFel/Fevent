@@ -14,8 +14,8 @@
  * @apiHeader {String} X-User-Id    User ID
  *
  * @apiParam {String}   name        Name of the event
- * @apiParam {Date}     begin       Begin date
- * @apiParam {Date}     end         Ending date
+ * @apiParam {Date}     begin       Begin date, format: DD/MM/YYYY HH:mm
+ * @apiParam {Date}     end         Ending date, format: DD/MM/YYYY HH:mm
  * @apiParam {Double}   price       Price of the event
  * @apiParam {String}   address     Address where the event takes place
  * @apiParam {String}   zipCode     ZIP code
@@ -24,7 +24,8 @@
  * @apiParam {String}   link        Link to a website or to a page
  * @apiParam {String}   comment     Description of the event
  * @apiParam {String}   image       Format: "data:[MIME_TYPE];base64,[BASE64]". You have to replace "[MIME_TYPE]" with
- *                                  the image MIME type and "[BASE64]" with the base64 encoded image file.
+ *                                  the image MIME type and "[BASE64]" with the base64 encoded image file. Request
+ *                                  size limit: 20mb.
  *
  * @apiSuccess {String} status  Request result
  * @apiSuccess {Object} id      Event ID
@@ -32,12 +33,9 @@
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
+ *         "statusCode": 200,
  *         "status": "success",
- *         "data": {
- *             "_id": "XbGwBxK9hc2NGeoi2",
- *             "name": "Event title",
- *             "description": "Event description"
- *         }
+ *         "id": "XbGwBxK9hc2NGeoi2"
  *     }
  *
  * @apiError EventNotFound The ID of the event was not found.
