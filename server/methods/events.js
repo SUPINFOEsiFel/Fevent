@@ -124,10 +124,11 @@ function editEventValidation (values) {
         throw new Meteor.Error(400, 'Ce code postal est invalide');
     if(!values.comment)
         throw new Meteor.Error(400, 'Ce commentaire est invalide');
-    if(!values.picture)
-        throw new Meteor.Error(400, 'L\'image n\'a pas été upload ou n\'est pas valide');
 }
 
 function addEventValidation (values) {
     editEventValidation(values);
+    
+    if(!values.picture)
+        throw new Meteor.Error(400, 'L\'image n\'a pas été upload ou n\'est pas valide');
 }
