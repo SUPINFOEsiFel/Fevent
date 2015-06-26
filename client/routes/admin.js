@@ -5,7 +5,8 @@ Router.route('/admin', {
         return [
             Meteor.subscribe('events'),
             Meteor.subscribe('users'),
-            Meteor.subscribe('groups')
+            Meteor.subscribe('groups'),
+            Meteor.subscribe('houses')
         ];
     }
 });

@@ -5,7 +5,7 @@
  * @apiGroup User
  *
  * @apiExample {curl} Example usage:
- *     curl fevent.meteor.com/api/login/ -d "&user=myUsername&password=myPassword"
+ *     curl fevent.meteor.com/api/login/ -d "user=myUsername&password=myPassword"
  *
  * @apiParam {String} user      Username
  * @apiParam {String} password  Password

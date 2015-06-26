@@ -22,3 +22,5 @@ tsega:bootstrap3-datetimepicker
 rzymek:moment-locale-fr
 tomi:upload-server
 tomi:upload-jquery
+meteorhacks:npm
+npm-container

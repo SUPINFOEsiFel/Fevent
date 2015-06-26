@@ -8,4 +8,4 @@ then
     sudo npm install apidoc -g
 fi
 
-apidoc -i . -o ../../../fevent-api-doc/
+apidoc -i . -o ../../public/api/doc/

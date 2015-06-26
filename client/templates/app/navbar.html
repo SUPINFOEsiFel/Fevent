@@ -15,15 +15,35 @@
 
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="nav navbar-nav">
-                    <li class="active">
+                    <li>
                         <a href="{{pathFor route='index'}}">
                             <i class="fa fa-fw fa-home"></i>
                             Évènements
                         </a>
                     </li>
+                    <li>
+                        <a href="{{pathFor route='houses'}}">
+                            <i class="fa fa-fw fa-bed"></i>
+                            Logements étudiants
+                        </a>
+                    </li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
+                    {{#if currentUser}}
+                        <li>
+                            <a href="{{pathFor route='admin'}}">
+                                <i class="fa fa-fw fa-dashboard"></i>
+                                Administration
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/api/doc/index.html">
+                                <i class="fa fa-fw fa-book"></i>
+                                Documentation de l'API
+                            </a>
+                        </li>
+                    {{/if}}
                     {{> loginButtons}}
                 </ul>
             </div>

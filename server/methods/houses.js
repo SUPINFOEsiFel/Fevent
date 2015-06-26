@@ -2,24 +2,19 @@ var fs = Npm.require('fs');
 var path = Npm.require('path');
 
 Meteor.methods({
-    addEvent: function(values) {
+    addHouse: function(values) {
         checkAdmin();
-        addEventValidation(values);
+        addHouseValidation(values);
 
         values.imageExtension = values.picture
             ? path.extname(UPLOAD_FULL_PATH + values.picture)
             : null;
 
-        var id = Events.insert({
-            date: new Date(),
+        var id = Houses.insert({
             name: values.name,
-            begin: values.begin,
-            end: values.end,
-            price: values.price,
             address: values.address,
             zipCode: values['zip-code'],
             city: values.city,
-            country: values.country,
             link: values.link,
             comment: values.comment,
             imageExtension: values.imageExtension
@@ -35,21 +30,17 @@ Meteor.methods({
             }
         });
     },
-    editEvent: function(values) {
+    editHouse: function(values) {
         checkAdmin();
-        editEventValidation(values);
+        editHouseValidation(values);
 
-        var event = Events.findOne(values.id);
+        var house = Houses.findOne(values.id);
 
         var data = {
             name:       values.name,
-            begin:      values.begin,
-            end:        values.end,
-            price:      values.price,
             address:    values.address,
             zipCode:    values['zip-code'],
             city:       values.city,
-            country:    values.country,
             link:       values.link,
             comment:    values.comment
         };
@@ -58,14 +49,14 @@ Meteor.methods({
             data.imageExtension = path.extname(UPLOAD_FULL_PATH + values.picture);
         }
 
-        Events.update(event._id, {
+        Houses.update(house._id, {
             $set: data
         });
 
         if (values.picture) {
-            fs.exists(UPLOAD_FULL_PATH + event._id + event.imageExtension, function (exists) {
+            fs.exists(UPLOAD_FULL_PATH + house._id + house.imageExtension, function (exists) {
                 if (exists) {
-                    fs.unlink(UPLOAD_FULL_PATH + event._id + event.imageExtension, function (err) {
+                    fs.unlink(UPLOAD_FULL_PATH + house._id + house.imageExtension, function (err) {
                         if (err) {
                             throw err;
                         }
@@ -75,7 +66,7 @@ Meteor.methods({
 
             fs.exists(UPLOAD_FULL_PATH + values.picture, function (exists) {
                 if (exists) {
-                    fs.rename(UPLOAD_FULL_PATH + values.picture, UPLOAD_FULL_PATH + event._id + data.imageExtension, function (err) {
+                    fs.rename(UPLOAD_FULL_PATH + values.picture, UPLOAD_FULL_PATH + house._id + data.imageExtension, function (err) {
                         if (err) {
                             throw err;
                         }
@@ -84,20 +75,20 @@ Meteor.methods({
             });
         }
     },
-    removeEvent: function(id) {
+    removeHouse: function(id) {
         checkAdmin();
 
-        var event = Events.findOne(id);
+        var house = Houses.findOne(id);
 
-        if (!event) {
+        if (!house) {
             throw new Error('Not found', 404);
         }
 
-        Events.remove(id);
+        Houses.remove(id);
 
-        fs.exists(UPLOAD_FULL_PATH + event._id + event.imageExtension, function (exists) {
+        fs.exists(UPLOAD_FULL_PATH + house._id + house.imageExtension, function (exists) {
             if (exists) {
-                fs.unlink(UPLOAD_FULL_PATH + event._id + event.imageExtension, function (err) {
+                fs.unlink(UPLOAD_FULL_PATH + house._id + house.imageExtension, function (err) {
                     if (err) {
                         throw err;
                     }
@@ -107,15 +98,9 @@ Meteor.methods({
     }
 });
 
-function editEventValidation (values) {
+function editHouseValidation (values) {
     if(!values.name)
         throw new Meteor.Error(400, 'Ce nom est invalide');
-    if(!values.begin)
-        throw new Meteor.Error(400, 'La date de départ est invalide');
-    if(!values.end)
-        throw new Meteor.Error(400, 'La date de fin est invalide');
-    if(!values.price)
-        throw new Meteor.Error(400, 'Ce prix est invalide');
     if(!values.address)
         throw new Meteor.Error(400, 'Cette adresse est invalide');
     if(!values.city)
@@ -124,11 +109,10 @@ function editEventValidation (values) {
         throw new Meteor.Error(400, 'Ce code postal est invalide');
     if(!values.comment)
         throw new Meteor.Error(400, 'Ce commentaire est invalide');
-}
-
-function addEventValidation (values) {
-    editEventValidation(values);
-    
     if(!values.picture)
         throw new Meteor.Error(400, 'L\'image n\'a pas été upload ou n\'est pas valide');
+}
+
+function addHouseValidation (values) {
+    editHouseValidation(values);
 }

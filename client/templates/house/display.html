@@ -1,0 +1,46 @@
+<template name="houseDisplay">
+    <div id="house-{{_id}}" class="house animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <img class="house-preview img-responsive img-rounded" src="/upload/{{_id}}{{imageExtension}}">
+                <header class="house-header">
+                    <h3 class="house-name">
+                        {{name}}
+                    </h3>
+                </header>
+
+                <p class="house-comment">
+                    {{comment}}
+                </p>
+
+                <div class="text-right">
+                    <p class="house-location">
+                        <span class="house-address">
+                            {{address}}
+                        </span>
+                            <br>
+                        <span class="house-zip-code">
+                            {{zipCode}}
+                        </span>
+                        <span class="house-city">
+                            {{city}}
+                        </span>
+                    </p>
+
+                    <div class="house-external">
+                        <p class="house-external-links">
+                            <a href="{{link}}" class="btn btn-info">
+                                <i class="fa fa-external-link"></i>
+                                Lien externe
+                            </a>
+                            <a class="btn btn-default house-more" href="{{pathFor route='houseShow' _id=_id}}">
+                                <i class="fa fa-rocket"></i>
+                                En savoir plus
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

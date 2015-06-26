@@ -1,0 +1,17 @@
+<template name="houses">
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1>
+                <i class="fa fa-fw fa-bed"></i>
+                Logements étudiants - Studélites
+            </h1>
+        </div>
+    </div>
+    <div class="container">
+        <section id="house-list">
+            {{#each houses}}
+                {{> houseDisplay}}
+            {{/each}}
+        </section>
+    </div>
+</template>

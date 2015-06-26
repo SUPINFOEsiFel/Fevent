@@ -5,7 +5,7 @@ Template.userPanel.events({
             title: 'Ajouter un utilisateur',
             template: Template.userForm,
             method: 'addUser',
-            fields: ['username', 'email', 'password'],
+            fields: ['username', 'email', 'password', 'group'],
             error: 'Impossible d\'ajouter un utilisateur !'
         });
     },
@@ -16,7 +16,7 @@ Template.userPanel.events({
             template: Template.userForm,
             method: 'editUser',
             error: 'Impossible d\'éditer l\'utilisateur !',
-            fields: ['username', 'email'],
+            fields: ['username', 'email', 'group'],
             values: this
         });
     },

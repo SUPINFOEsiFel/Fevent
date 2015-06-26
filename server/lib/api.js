@@ -1,3 +1,7 @@
+var base64Img = Meteor.npmRequire('base64-img');
+var fs = Meteor.npmRequire('fs');
+var path = Meteor.npmRequire('path');
+
 restivusInit = function() {
     Restivus.configure({
         useAuth: true
@@ -55,7 +59,7 @@ restivusInit = function() {
         }
     });
 
-    var requiredFields = ['name', 'begin', 'end', 'price', 'address', 'zipCode', 'city', 'country', 'link', 'comment'];
+    var requiredFields = ['name', 'begin', 'end', 'price', 'address', 'zipCode', 'city', 'country', 'link', 'comment', 'image'];
 
     Restivus.addRoute('event', {
         post: {
@@ -86,9 +90,33 @@ restivusInit = function() {
                 }
 
                 this.bodyParams.groupId = this.user.groupId;
+                this.bodyParams.date = new Date();
+
+                var image = this.bodyParams.image;
+                delete this.bodyParams.image;
+
                 var id = Events.insert(this.bodyParams);
 
                 if (id) {
+                    // Create image
+                    base64Img.imgSync(image, UPLOAD_FULL_PATH, id);
+                    var files = fs.readdirSync(UPLOAD_FULL_PATH);
+                    var imageExtension = null;
+
+                    files.forEach(function (file) {
+                        if (file.lastIndexOf(id, 0) === 0) {
+                            imageExtension = path.extname(file);
+
+                            return false;
+                        }
+                    });
+
+                    Events.update(id, {
+                        $set: {
+                            imageExtension: imageExtension
+                        }
+                    });
+
                     return {
                         statusCode: 200,
                         status: 'success',
